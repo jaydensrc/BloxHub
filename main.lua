@@ -15,6 +15,7 @@
 ]]
 
 local requestFunc = (http_request or request or syn and syn.request or fluxus and fluxus.request or solara and solara.request)
+local HttpService = game:GetService("HttpService")
 
 function ValidateKey(key, serviceId, hwid)
 	if not requestFunc then
@@ -33,7 +34,7 @@ function ValidateKey(key, serviceId, hwid)
 
 	if success and response then
 		if response.StatusCode == 200 then
-			local jsonData, decodeSuccess = pcall(function()
+			local decodeSuccess, jsonData = pcall(function()
 				return HttpService:JSONDecode(response.Body)
 			end)
 
@@ -1144,44 +1145,45 @@ PaddingBottom=UDim.new(0,16),
 
 
 
-local B=g("Exit","log-out",function()
-o:Close()()
-end,"Tertiary",z.Frame)
+-- Exit button
+local B = g("Exit", "log-out", function()
+    o:Close()()
+end, "Tertiary", z.Frame)
 
 if A then
-B.Parent=A
-B.Size=UDim2.new(0,0,0,42)
-B.Position=UDim2.new(0,16,1,-16)
-B.AnchorPoint=Vector2.new(0,1)
+    B.Parent = A
+    B.Size = UDim2.new(0, 0, 0, 42)
+    B.Position = UDim2.new(0, 16, 1, -16)
+    B.AnchorPoint = Vector2.new(0, 1)
 end
 
+-- If there's a key system URL, create "Get key" button
 if i.KeySystem.URL then
-g("Get key","key",function()
-setclipboard(i.KeySystem.URL)
-end,"Secondary",z.Frame)
+    g("Get key", "key", function()
+        setclipboard(i.KeySystem.URL)
+    end, "Secondary", z.Frame)
 end
 
-local C=g("Submit","arrow-right",function()
-local C=p
-local D
-if type(i.KeySystem.Key)=="table"then
-D=table.find(i.KeySystem.Key,tostring(C))
-else
-D=tostring(i.KeySystem.Key)==tostring(C)
-end
+-- Submit button
+local C = g("Submit", "arrow-right", function()
+    local inputKey = p
+    local isValidKey
 
-if D then
-o:Close()()
+    isValidKey = ValidateKey(tostring(inputKey), "bloxhub", gethwid())
 
-if i.KeySystem.SaveKey then
-local E=i.Folder or i.Title
-writefile(E.."/"..j..".key",tostring(C))
-end
+    if isValidKey then
+        o:Close()()
 
-task.wait(.4)
-k(true)
-end
-end,"Primary",z)
+        if i.KeySystem.SaveKey then
+            local folderName = i.Folder or i.Title
+            writefile(folderName .. "/" .. j .. ".key", tostring(inputKey))
+        end
+
+        task.wait(0.4)
+        k(true)
+    end
+end, "Primary", z)
+
 
 C.AnchorPoint=Vector2.new(1,0.5)
 C.Position=UDim2.new(1,0,0.5,0)
