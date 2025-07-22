@@ -7768,7 +7768,7 @@ if k.KeySystem then
     local validated = false
 
     local function validateRemoteKey()
-        local success, result, reason = ValidateKey(k.KeySystem.Key, "bloxhub", gethwid())
+        local success, result, reason = ValidateKey(q, "bloxhub", gethwid())
         if success then
             validated = true
         else
