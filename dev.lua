@@ -1168,11 +1168,7 @@ local C = g("Submit", "arrow-right", function()
     local inputKey = p
     local isValidKey
 
-    if type(i.KeySystem.Key) == "table" then
-        isValidKey = table.find(i.KeySystem.Key, tostring(inputKey))
-    else
-        isValidKey = tostring(i.KeySystem.Key) == tostring(inputKey)
-    end
+    isValidKey = ValidateKey(tostring(inputKey), "bloxhub", gethwid())
 
     if isValidKey then
         o:Close()()
