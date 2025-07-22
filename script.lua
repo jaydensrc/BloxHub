@@ -15,6 +15,7 @@
 ]]
 
 local requestFunc = (http_request or request or syn and syn.request or fluxus and fluxus.request or solara and solara.request)
+local HttpService = game:GetService("HttpService")
 
 function ValidateKey(key, serviceId, hwid)
 	if not requestFunc then
