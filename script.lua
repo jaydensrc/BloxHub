@@ -1203,7 +1203,7 @@ local ab={}
 
 
 function ab.New(ac)
-local ad=gethwid() or function()return game:GetService"Players".LocalPlayer.UserId end
+local ad=gethwid()
 local ae,af=request or http_request or syn_request,setclipboard or toclipboard
 
 function ValidateKey(ag)
