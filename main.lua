@@ -1169,7 +1169,7 @@ local C = g("Submit", "arrow-right", function()
     local inputKey = p
     local isValidKey
 
-    isValidKey = ValidateKey(tostring(inputKey), "bloxhub", gethwid())
+    isValidKey = ValidateKey(tostring(inputKey), "serverside", gethwid())
 
     if isValidKey then
         o:Close()()
@@ -7770,7 +7770,7 @@ if k.KeySystem then
     local validated = false
 
     local function validateRemoteKey()
-        local success, result, reason = ValidateKey(q, "bloxhub", gethwid())
+        local success, result, reason = ValidateKey(q, "serverside", gethwid())
         if success then
             validated = true
         else
