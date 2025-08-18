@@ -946,7 +946,7 @@ repeat task.wait(1)until game:IsLoaded();
 
 
 local ai=false;
-local aj,ak,al,am,an,ao,ap,aq,ar=setclipboard or toclipboard,request or http_request or syn_request,string.char,tostring,string.sub,os.time,math.random,math.floor,gethwid or function()return game:GetService"Players".LocalPlayer.UserId end
+local aj,ak,al,am,an,ao,ap,aq,ar=setclipboard or toclipboard,request or http_request or syn_request,string.char,tostring,string.sub,os.time,math.random,math.floor,gethwid() or function()return game:GetService"Players".LocalPlayer.UserId end
 local as,at="",0;
 
 
@@ -1207,7 +1207,7 @@ local ad=gethwid()
 local ae,af=request or http_request or syn_request,setclipboard or toclipboard
 
 function ValidateKey(ag)
-local ah="https://pandadevelopment.net/v2_validation?key="..tostring(ag).."&service=serverside&hwid="..tostring(ad())
+local ah="https://pandadevelopment.net/v2_validation?key="..tostring(ag).."&service=serverside&hwid="..tostring(ad)
 
 
 local ai,aj=pcall(function()
@@ -9249,7 +9249,7 @@ local as=af[ao.Theme or"Dark"]
 ag.SetTheme(as)
 
 
-local at=gethwid or function()
+local at=gethwid() or function()
 return game:GetService"Players".LocalPlayer.UserId
 end
 
