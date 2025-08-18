@@ -1207,7 +1207,7 @@ local ad=gethwid()
 local ae,af=request or http_request or syn_request,setclipboard or toclipboard
 
 function ValidateKey(ag)
-local ah="https://pandadevelopment.net/v2_validation?key="..tostring(ag).."&service=serverside&hwid="..tostring(ad)
+local ah="https://pandadevelopment.net/v2_validation?key="..tostring(ag).."&service=serverside&hwid="..gethwid()
 
 
 local ai,aj=pcall(function()
