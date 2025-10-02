@@ -7769,8 +7769,8 @@ local q=b.Name or"Unknown"
 if k.KeySystem then
     local validated = false
 
-    local function validateRemoteKey()
-        local success, result, reason = ValidateKey(q, "syntix", gethwid())
+    local function validateRemoteKey(ky)
+        local success, result, reason = ValidateKey(ky, "syntix", gethwid())
         if success then
             validated = true
         else
@@ -7781,7 +7781,7 @@ if k.KeySystem then
 
     if k.KeySystem.SaveKey and k.Folder then
         if isfile(k.Folder.."/"..q..".key") then
-            validateRemoteKey()
+            validateRemoteKey(readfile(k.Folder.."/"..q..".key"))
         else
             ab.new(k, q, function(r) validated = r end)
         end
